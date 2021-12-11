@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-import Input from './ui-components/inputs/Input';
+import {Input, Button} from './ui-components';
 import './App.scss';
 
 function App() {
@@ -7,6 +7,7 @@ function App() {
   return (
     <div className="App">
       <Input placeholder="Message" onChange={data => setMessage(data)} value={message} name="message" />
+      <Button>Start</Button>
     </div>
   );
 }

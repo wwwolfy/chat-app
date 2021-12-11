@@ -1,0 +1,19 @@
+@import "../config";
+
+.tx-c-button {
+    color: map-get($colors, white);
+    background-color: map-get($colors, red);
+    padding: map-get($spacing, spacing-16) map-get($spacing, spacing-48);
+    font-size: map-get($font-sizes, font-size-24);
+    border: 2px solid map-get($colors, red);
+    cursor: pointer;
+    transition: all 0.2s ease;
+
+    &:hover {
+        background-color: lighten(map-get($colors, red), 10%);
+    }
+
+    &:active {
+        background-color: darken(map-get($colors, red), 10%);
+    }
+}
