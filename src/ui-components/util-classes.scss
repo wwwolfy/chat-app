@@ -1,0 +1,33 @@
+@import "./config";
+
+.tx-u-margin--right-8 {
+    margin-right: map-get($spacing, spacing-8);
+}
+
+.tx-u-padding--8 {
+    padding: map-get($spacing, spacing-8);
+}
+
+.tx-u-flex {
+    display: flex;
+}
+
+.tx-u-flex--grow-1 {
+    flex-grow: 1;
+}
+
+@each $justify in (flex-start, flex-end, center, space-between, space-around, space-evenly) {
+    // Property: justify-content
+    // .tx-u-flex--justify-{*}
+    .tx-u-flex--justify-#{$justify} {
+        justify-content: $justify;
+    }
+}
+
+@each $align in (stretch, flex-start, flex-end, center, baseline, auto) {
+    // Property: align-items
+    // .tx-u-flex--align-{*}
+    .tx-u-flex--align-#{$align} {
+        align-items: $align;
+    }
+}

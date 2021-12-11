@@ -2,12 +2,14 @@
 
 .tx-c-button {
     color: map-get($colors, white);
+    height: 48px;
     background-color: map-get($colors, red);
-    padding: map-get($spacing, spacing-16) map-get($spacing, spacing-48);
+    padding: 0 map-get($spacing, spacing-24);
     font-size: map-get($font-sizes, font-size-24);
     border: 2px solid map-get($colors, red);
     cursor: pointer;
     transition: all 0.2s ease;
+    border-radius: map-get($spacing, spacing-8);
 
     &:hover {
         background-color: lighten(map-get($colors, red), 10%);

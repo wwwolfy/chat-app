@@ -2,9 +2,10 @@
 
 .tx-c-input {
     width: 100%;
+    height: 48px;
     display: inline-flex;
     border: 2px solid map-get($colors, dark-blue);
-    padding: map-get($spacing, spacing-24) map-get($spacing, spacing-8);
+    padding: 0 map-get($spacing, spacing-8);
     caret-color: map-get($colors, dark-blue);
     background: map-get($colors, white);
     border-radius: map-get($spacing, spacing-8);

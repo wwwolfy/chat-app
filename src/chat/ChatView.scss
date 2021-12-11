@@ -1,0 +1,7 @@
+@import "../ui-components/config";
+
+.tx-chat-view {
+    height: calc(100vh - 64px);
+    background-image: url("../assets/body-bg.png");
+    background-size: cover;
+}

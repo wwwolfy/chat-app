@@ -1,0 +1,9 @@
+@import "../config";
+
+.tx-c-input-button-container {
+    width: 100%;
+    background-color: map-get($colors, blue);
+    position: fixed;
+    bottom: 0;
+    left: 0;
+}
