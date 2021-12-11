@@ -1,0 +1,22 @@
+@import "../config";
+
+.tx-c-input {
+    width: 100%;
+    display: inline-flex;
+    border: 2px solid map-get($colors, dark-blue);
+    padding: map-get($spacing, spacing-24) map-get($spacing, spacing-8);
+    caret-color: map-get($colors, dark-blue);
+    background: map-get($colors, white);
+    border-radius: map-get($spacing, spacing-8);
+    color: map-get($colors, dark-grey);
+    font-size: map-get($font-sizes, font-size-24);
+
+    &::placeholder {
+        color: map-get($colors, grey);
+        font-size: map-get($font-sizes, font-size-20);
+    }
+
+    &:focus {
+        outline: none;
+    }
+}
