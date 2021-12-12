@@ -3,17 +3,16 @@
 .tx-u-margin--right-8 {
     margin-right: map-get($spacing, spacing-8);
 }
-
-.tx-u-padding--8 {
-    padding: map-get($spacing, spacing-8);
-}
-
 .tx-u-flex {
     display: flex;
 }
 
 .tx-u-flex--grow-1 {
     flex-grow: 1;
+}
+
+.tx-u-flex--direction-column {
+    flex-direction: column;
 }
 
 @each $justify in (flex-start, flex-end, center, space-between, space-around, space-evenly) {
@@ -30,4 +29,8 @@
     .tx-u-flex--align-#{$align} {
         align-items: $align;
     }
+}
+
+.tx-u-full-height {
+    height: 100%;
 }
