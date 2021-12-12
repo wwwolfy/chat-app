@@ -1,4 +1,4 @@
-import React, {useState, useEffect} from 'react';
+import React, {useState, useEffect, useRef} from 'react';
 import {InputButtonContainer, Input, Button, Container, Message} from '../ui-components';
 import messagesService from '../services/messagesService';
 import {formatTimeString} from './utils/formatTimeString';
@@ -10,13 +10,14 @@ const ChatView = () => {
     const [message, setMessage] = useState('');
     const [messages, setMessages] = useState(null);
     const [isLoading, setIsLoading] = useState(false);
+    const scrollRef = useRef(null);
 
     useEffect(() => {
         messagesService.getMessages({timestamp: null, limit: null})
             .then(res => res.json())
             .then(res => {
                 setMessages(res);
-                window.scrollTo(0, document.body.scrollHeight);
+                scrollRef.current.scrollIntoView({ behavior: "smooth" });
             })
             .catch(err => console.error(err));
     }, []);
@@ -41,7 +42,7 @@ const ChatView = () => {
 
     return (
         <div className="tx-chat-view">
-            <Container className="tx-u-flex tx-u-flex--direction-column tx-u-flex--justify-flex-end tx-u-full-height">
+            <Container className="tx-u-flex tx-u-flex--direction-column tx-u-flex--justify-flex-end">
                 {messages || isLoading ? (
                     <>
                     {messages.length > 0 ? (
@@ -68,12 +69,13 @@ const ChatView = () => {
                     <h1>Loading</h1>
                 )}
             </Container>
+            <div ref={scrollRef} />
             <InputButtonContainer>
                 <Container className="tx-u-flex tx-u-flex--justify-space-between">
                     <div className="tx-u-flex--grow-1 tx-u-margin--right-8">
                         <Input name="message" value={message} onChange={data => setMessage(data)} placeholder="Message" />
                     </div>
-                    <Button onClick={sendMessage}>Send</Button>
+                    <Button onClick={sendMessage} isDisabled={isLoading}>Send</Button>
                 </Container>
             </InputButtonContainer>
         </div>
