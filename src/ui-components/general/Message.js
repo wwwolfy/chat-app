@@ -3,14 +3,14 @@ import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import './Message.scss';
 
-const Message = ({author, content, dateString}) => {
+const Message = ({author, content, dateString, isUserAuthor}) => {
     const messageClass = classNames('tx-message', {
-        'tx-message--right': !author,
+        'tx-message--right': isUserAuthor,
     });
 
     return (
         <div className={messageClass}>
-            {author && (
+            {!isUserAuthor && (
                 <p className="tx-message__author">{author}</p>
             )}
             <p className="tx-message__content">{content}</p>
@@ -20,13 +20,15 @@ const Message = ({author, content, dateString}) => {
 };
 
 Message.propTypes = {
-    author: PropTypes.string,
+    author: PropTypes.string.isRequired,
     content: PropTypes.string.isRequired,
     dateString: PropTypes.string.isRequired,
+    isUserAuthor: PropTypes.bool,
+
 };
 
 Message.defaultProps = {
-    author: '',
+    isUserAuthor: false,
 };
 
 export default Message;
