@@ -1,0 +1,26 @@
+@import "../config";
+
+.tx-c-button {
+    color: map-get($colors, white);
+    height: 48px;
+    background-color: map-get($colors, red);
+    padding: 0 map-get($spacing, spacing-24);
+    font-size: map-get($font-sizes, font-size-16);
+    border: 2px solid map-get($colors, red);
+    cursor: pointer;
+    transition: all 0.2s ease;
+    border-radius: map-get($spacing, spacing-8);
+
+    &--is-disabled {
+        background-color: map-get($colors, dark-grey);
+        border: 2px solid map-get($colors, dark-grey);
+    }
+
+    &:hover:not(#{&}--is-disabled) {
+        background-color: lighten(map-get($colors, red), 10%);
+    }
+
+    &:active {
+        background-color: darken(map-get($colors, red), 10%);
+    }
+}

@@ -1,0 +1,32 @@
+@import "../config";
+
+.tx-message {
+    background: map-get($colors, white);
+    border: 1px solid map-get($colors, grey);
+    padding: map-get($spacing, spacing-16);
+    margin-bottom: map-get($spacing, spacing-8);
+    border-radius: map-get($spacing, spacing-8);
+    color: map-get($colors, dark-grey);
+    display: flex;
+    flex-direction: column;
+    max-width: 65%;
+    width: fit-content;
+
+
+    &--right {
+        background: map-get($colors, orange);
+        align-self: flex-end;
+
+        .tx-message__date {
+            align-self: flex-end;
+        }
+    }
+
+    &__author {
+        color: map-get($colors, grey);
+    }
+
+    &__date {
+        color: map-get($colors, grey);
+    }
+}

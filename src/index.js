@@ -1,12 +1,12 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import './index.scss';
-import App from './App';
+import './ui-components/index.scss';
+import ChatView from './chat/ChatView';
 import reportWebVitals from './reportWebVitals';
 
 ReactDOM.render(
   <React.StrictMode>
-    <App />
+    <ChatView />
   </React.StrictMode>,
   document.getElementById('root')
 );
