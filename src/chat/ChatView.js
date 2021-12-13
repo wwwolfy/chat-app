@@ -1,7 +1,7 @@
 import React, {useState, useEffect, useRef} from 'react';
 import {InputButtonContainer, Input, Button, Container, Message} from '../ui-components';
+import MessageModel from './models/Message';
 import messagesService from '../services/messagesService';
-import {formatTimeString} from './utils/formatTimeString';
 import './ChatView.scss';
 
 const userName = 'Slobodan';
@@ -15,8 +15,12 @@ const ChatView = () => {
     useEffect(() => {
         messagesService.getMessages({timestamp: null, limit: null})
             .then(res => res.json())
-            .then(res => {
-                setMessages(res);
+            .then(messagesDTO => {
+                const messages = messagesDTO.map(messageDTO => {
+                    const message = new MessageModel();
+                    return message.fromDTO(messageDTO);
+                });
+                setMessages(messages);
                 scrollRef.current.scrollIntoView({ behavior: "smooth" });
             })
             .catch(err => console.error(err));
@@ -27,7 +31,8 @@ const ChatView = () => {
         setIsLoading(true);
         messagesService.addMessage({message: message.trim(), author: userName})
             .then(res => res.json())
-            .then(message => {
+            .then(messageDTO => {
+                const message = new MessageModel().fromDTO(messageDTO);
                 setMessages(messages => {
                     return [
                         ...messages,
@@ -35,6 +40,7 @@ const ChatView = () => {
                     ]
                 });
                 setMessage('');
+                scrollRef.current.scrollIntoView({ behavior: "smooth" });
             })
             .catch(err => console.error(err))
             .finally(() => setIsLoading(false))
@@ -48,18 +54,17 @@ const ChatView = () => {
                     {messages.length > 0 ? (
                         <>
                             {messages.map(msg => {
-                                    const {author, message, timestamp, _id} = msg;
-                                    const dateString = formatTimeString(timestamp);
-                                    return (
-                                        <Message
-                                            key={_id}
-                                            author={author}
-                                            content={message}
-                                            dateString={dateString}
-                                            isUserAuthor={author === userName}
-                                        />
-                                    )
-                                })}
+                                const {author, message, dateString, id} = msg;
+                                return (
+                                    <Message
+                                        key={id}
+                                        author={author}
+                                        content={message}
+                                        dateString={dateString}
+                                        isUserAuthor={author === userName}
+                                    />
+                                )
+                            })}
                         </>
                     ) : (
                         <h1>No messages</h1>
@@ -71,7 +76,7 @@ const ChatView = () => {
             </Container>
             <div ref={scrollRef} />
             <InputButtonContainer>
-                <Container className="tx-u-flex tx-u-flex--justify-space-between">
+                <Container className="tx-c-container--footer tx-u-flex tx-u-flex--justify-space-between">
                     <div className="tx-u-flex--grow-1 tx-u-margin--right-8">
                         <Input name="message" value={message} onChange={data => setMessage(data)} placeholder="Message" />
                     </div>

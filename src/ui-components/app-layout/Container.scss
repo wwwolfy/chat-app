@@ -3,5 +3,16 @@
 .tx-c-container {
     max-width: $container-width;
     margin: 0 auto;
-    padding: 0 24px;
+    padding: 0 map-get($spacing, spacing-24);
+
+    &--footer {
+        padding: 0 map-get($spacing, spacing-8);
+    }
 }
+
+@media only screen and (min-width: 400px) {
+    .tx-c-container--footer {
+        padding: 0 map-get($spacing, spacing-24);
+    }
+}
+
