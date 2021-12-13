@@ -16,8 +16,6 @@
     &--right {
         background: map-get($colors, orange);
         align-self: flex-end;
-        margin-top: map-get($spacing, spacing-8);
-        margin-bottom: map-get($spacing, spacing-16);
 
         .tx-message__date {
             align-self: flex-end;

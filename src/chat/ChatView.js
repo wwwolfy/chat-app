@@ -4,13 +4,24 @@ import useMessages from './hooks/useMessages';
 import './ChatView.scss';
 
 const userName = 'Slobodan';
+const emptyMessageRegex = /^[ \t\r\n]*$/;
 
 const ChatView = () => {
     const [message, setMessage] = useState('');
     const scrollRef = useRef(null);
     const {messages, isLoading, sendMessage} = useMessages(scrollRef);
 
+    const isButtonDisabled = isLoading || emptyMessageRegex.test(message);
+
     const onSendMessage = () => {
+        sendMessage(message, userName, setMessage);
+    };
+
+    const onKeyDownHandler = e => {
+        const {key} = e;
+        if (isButtonDisabled || key !== 'Enter') return;
+
+        e.preventDefault();
         sendMessage(message, userName, setMessage);
     };
 
@@ -46,9 +57,9 @@ const ChatView = () => {
             <InputButtonContainer>
                 <Container className="tx-c-container--footer tx-u-flex tx-u-flex--justify-space-between">
                     <div className="tx-u-flex--grow-1 tx-u-margin--right-8">
-                        <Input name="message" value={message} onChange={data => setMessage(data)} placeholder="Message" />
+                        <Input name="message" value={message} onChange={data => setMessage(data)} placeholder="Message" onKeyDown={onKeyDownHandler}/>
                     </div>
-                    <Button onClick={onSendMessage} isDisabled={isLoading}>Send</Button>
+                    <Button onClick={onSendMessage} isDisabled={isButtonDisabled}>Send</Button>
                 </Container>
             </InputButtonContainer>
         </div>

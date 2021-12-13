@@ -11,7 +11,12 @@
     transition: all 0.2s ease;
     border-radius: map-get($spacing, spacing-8);
 
-    &:hover {
+    &--is-disabled {
+        background-color: map-get($colors, dark-grey);
+        border: 2px solid map-get($colors, dark-grey);
+    }
+
+    &:hover:not(#{&}--is-disabled) {
         background-color: lighten(map-get($colors, red), 10%);
     }
 

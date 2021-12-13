@@ -1,5 +1,6 @@
 import React, {useState, Children} from 'react';
 import PropTypes from 'prop-types';
+import classNames from 'classnames';
 import './Button.scss';
 
 const Button = React.forwardRef((props, ref) => {
@@ -23,7 +24,9 @@ const Button = React.forwardRef((props, ref) => {
             // https://github.com/yannickcr/eslint-plugin-react/issues/1555
             // eslint-disable-next-line react/button-has-type
             type={type}
-            className="tx-c-button"
+            className={classNames('tx-c-button', {
+                'tx-c-button--is-disabled': isDisabled,
+            })}
             onClick={onClick}
             disabled={isDisabled}
             onFocus={() => setIsFocused(true)}

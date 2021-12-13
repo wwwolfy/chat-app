@@ -2,7 +2,7 @@ import {useState, useEffect} from 'react';
 import MessageModel from '../models/Message';
 import messagesService from '../../services/messagesService';
 
-const useMessages = (scrollRef) => {
+const useMessages = scrollRef => {
     const [messages, setMessages] = useState(null);
     const [isLoading, setIsLoading] = useState(false);
 

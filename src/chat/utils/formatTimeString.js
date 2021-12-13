@@ -6,7 +6,7 @@ export const formatTimeString = timestamp => {
     const day = date.getDate();
     const hour = date.getHours();
     const min = date.getMinutes();
-    return `${day} ${month} ${year} ${hour}:${min < 10 ? `0${min}` : min}`
+    return `${day} ${month} ${year} ${hour < 10 ? `0${hour}` : hour}:${min < 10 ? `0${min}` : min}`
 };
 
 const getMonthsName = (format) => {
