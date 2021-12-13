@@ -13,7 +13,6 @@ class Message {
 
         return {
             fromDTO: this.fromDTO,
-            getMessage: this,
         }
     }
 
