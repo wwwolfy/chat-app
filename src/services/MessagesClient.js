@@ -1,5 +1,11 @@
 import qs from 'qs';
 
+/**
+ * Messages service client
+ *
+ * @constructor
+ */
+
 export default class MessagesClient {
     constructor({serviceUrl, accessToken}) {
         this.serviceUrl = serviceUrl;
@@ -40,7 +46,6 @@ export default class MessagesClient {
             body: JSON.stringify(params),
         })
     }
-
 }
 
 

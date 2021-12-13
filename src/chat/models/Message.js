@@ -3,6 +3,17 @@ import {formatTimeString} from '../utils/formatTimeString';
 
 const HTMLParser = new Parser();
 
+/**
+ * Message model type definition
+ *
+ * @typedef {Object} Message
+ * @property {?string} id
+ * @property {?string} author
+ * @property {?string} message
+ * @property {?string} dateString
+ * @property {?number} timestamp
+ */
+
 class Message {
     constructor() {
         this.id = null;
